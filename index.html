@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Begining</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body class="">
+
+	<div class="container" id="app">
+
+		<nav class="navbar navbar-light bg-light">
+			<div class="navbar-text ml-auto">
+				<b>Cart:</b>
+				<span class="badge badge-pill badge-success"> {{ cart.length }} </span>
+			</div>
+		</nav>
+
+		<!-- attribut v-model berguna untuk pembuat pengikat dua arah dalam form element atau komponen -->
+		<div class="form-inline mr-auto">
+			<label for="" class="font-weight mr-2">Max</label>
+			<input type="number" class="form-control w-25" v-model="maximum" id="">
+		</div>
+
+		<input type="range" name="" id="" class="custom-range" min="0" max="200" v-model="maximum">
+
+		<!-- v-for adalah cara yang disediakan vue js untuk membuat perulangan. v-for akan dibaca secara otomatis dan diterjamahkan dengan perulangan. data properti dom disimpan didalam variable item, kemudian value dipanggil berdasarkan nama properti -->
+		<div class="row d-flex mb-3 align-items-center" v-for="item in products" v-if="item.price <= Number(maximum)">
+
+			<div class="col-1 m-auto">
+				<!-- <button class="btn btn-info" v-on:click="cart.push(item)">+</button> 
+				ini juga method atau event yang dapat dipakai berulang kali di vuejs-->
+				<button class="btn btn-info" v-on:click="addItem(item)">+</button>
+			</div>
+
+			<div class="col-sm-4">
+				<!-- dalam binding attribute, penulisan data properti tak perlu memakai {{}} tapi cukup dengan nama propertinya -->
+				<img class="img-fluid" v-bind:src="item.image" v-bind:alt="item.name">
+			</div>
+			<div class="col">
+				<!-- penulisan v-bind bisa diganti dengan : saja <img class="img-fluid" :src="image" :alt="name"> -->
+				<h2 class="text-info">{{ item.name }}</h2>
+				<p  class="mb-0">{{ item.description }}</p>
+				<div class="h5 float-right">{{ item.price }}</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

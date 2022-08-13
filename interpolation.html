@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interpolation Tempatle</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="row">
+        <p>
+          <strong>Bound:</strong><br />
+          <span> {{ name }} </span>
+        </p>
+
+        <h5>Text</h5>
+        <textarea class="form-control" rows="3" v-model="name"></textarea>
+
+        <h5>Text</h5>
+        <strong>Parsed:</strong>
+        <!-- v-html: membaca syntax html dan menerjemahkannya sesuai dengan definisinya -->
+        <span v-html="name"></span>
+
+        <h5>Unchangeable:</h5>
+        <!-- v-once, tidak merubah diawal properti sehingga tidak dapat beruah atau mengalami perubahan. hal ini dapat mempengaruhi banyak element atau inner element -->
+        <span v-once> {{ name }} </span>
+      </div>
+
+      <div class="row">
+        <!-- sebab dalam :class atau v-bind:class yang dibaca yaitu type data string maka penambahan nama class baru menggunakan v-bind menggunakan cara tambah di javascript -->
+        <!-- <img :class="imgClass + '' + 'w-25'" :src="products.product[0].imageProduct" :alt="products.product[0].nameProduct"> -->
+        <img v-bind="{
+            class: imgClass,
+            src: products.product[0].imageProduct,
+            alt: products.product[0].nameProduct
+        }">
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="interpolation.js"></script>
+  </body>
+</html>
